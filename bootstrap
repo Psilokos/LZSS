@@ -1,0 +1,7 @@
+#! /bin/sh
+
+cd "$(dirname "$0")"
+set -e
+autoreconf --force --install --verbose
+rm -f stamp-h*
+rm -f config.h.in~
