@@ -3,5 +3,6 @@
 
 # include "lzss/Codec.hpp"
 # include "lzss/Encoder.hpp"
+# include "lzss/Decoder.hpp"
 
 #endif
