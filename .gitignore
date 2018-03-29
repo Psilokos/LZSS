@@ -21,6 +21,7 @@ Makefile.in
 /configure.scan
 /depcomp
 /install-sh
+/m4
 /missing
 /stamp-h1
 
@@ -31,3 +32,7 @@ Makefile.in
 # http://www.gnu.org/software/texinfo
 
 /texinfo.tex
+
+# build stuff
+
+/build*
