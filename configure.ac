@@ -23,6 +23,7 @@ dnl  Check for compiler properties
 dnl
 
 AC_C_INLINE
+AX_CXX_COMPILE_STDCXX([17], [noext], [mandatory])
 
 dnl
 dnl  Compiler flags
