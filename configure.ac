@@ -8,6 +8,13 @@ dnl  Check for tools
 dnl
 
 AC_PROG_CXX
+AM_PROG_AR
+
+dnl
+dnl  Libtool
+dnl
+
+LT_INIT
 
 dnl
 dnl  Check for compiler properties
@@ -26,10 +33,12 @@ dnl
 dnl  Configuration done
 dnl
 
+AC_CONFIG_MACRO_DIRS([m4])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_FILES([
     Makefile
     src/Makefile
+    codec/Makefile
 ])
 
 dnl
