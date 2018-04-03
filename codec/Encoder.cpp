@@ -1,8 +1,29 @@
 #include <exception>
+#include <iostream>
 #include "Encoder.hpp"
+#include "BST.hpp"
 
 namespace lzss
 {
+    void
+    Encoder::testBST(std::string const & src, std::size_t keySize) const
+    {
+        BST<std::string_view, std::size_t> bst;
+        static_cast<ITree &>(bst).dumpUnderlyingTypes();
+
+        std::string_view searchBuf(src.c_str(), src.length());
+        for (std::size_t i = 0; i + keySize < searchBuf.size(); ++i)
+            bst.insert(searchBuf.substr(i, keySize), i);
+
+        std::cout << bst << std::endl;
+
+        while (bst)
+        {
+            bst.remove(bst.key());
+            std::cout << bst << std::endl;
+        }
+    }
+
     /*
      * private methods
      */
@@ -12,6 +33,8 @@ namespace lzss
     void
     Encoder::codeFilePriv(std::ifstream & ifs, std::ofstream & ofs)
     {
+        this->testBST("abbabcbbacb", 4);
+
         m_ofs = std::move(ofs);
         m_sliWin.reset(std::move(ifs));
         m_encBuf = std::vector<std::uint8_t>(1);
