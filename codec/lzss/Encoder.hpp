@@ -25,6 +25,8 @@ namespace lzss
             template<typename T> void writeToBuffer(T code);
             void writeChunkToFile(bool force = false);
 
+            void testBST(std::string const & src, std::size_t keySize) const;
+
         private:
             std::ofstream           m_ofs;
             SlidingWindow           m_sliWin;
