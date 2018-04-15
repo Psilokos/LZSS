@@ -10,7 +10,7 @@ namespace lzss
     template<> void Encoder::writeToBuffer<bool>(bool flag);
 
     void
-    Encoder::codeFilePriv(std::ifstream & ifs, std::ofstream & ofs)
+    Encoder::codeFile(std::ifstream && ifs, std::ofstream && ofs)
     {
 #ifdef DEBUG
         std::ofstream decoded("decoded");
@@ -20,6 +20,8 @@ namespace lzss
         m_encBuf = std::vector<std::uint8_t>(1);
         m_nBits = 0;
 
+        auto sliWinSize = m_sliWin.size();
+        m_ofs.write(reinterpret_cast<char *>(&sliWinSize), sizeof(sliWinSize));
         while (m_sliWin)
         {
             auto const match = m_sliWin.match(2 * sizeof(std::uint16_t));

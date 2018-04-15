@@ -32,7 +32,7 @@ namespace lzss
             void codeFile(void);
 
         protected:
-            virtual void codeFilePriv(std::ifstream & ifs, std::ofstream & ofs) = 0;
+            virtual void codeFile(std::ifstream && ifs, std::ofstream && ofs) = 0;
 
         protected:
             typedef std::queue<std::pair<std::ifstream, std::ofstream>> FileQueue;

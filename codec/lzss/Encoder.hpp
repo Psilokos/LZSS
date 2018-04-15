@@ -7,8 +7,10 @@
 
 namespace lzss
 {
-    class Encoder : public Codec
+    namespace encoder
     {
+        class Encoder : public Codec
+        {
         public:
             Encoder(void) = default;
             Encoder(Encoder const &) = delete;
@@ -19,7 +21,7 @@ namespace lzss
             Encoder & operator=(Encoder &&) = delete;
 
         private:
-            virtual void codeFilePriv(std::ifstream & ifs, std::ofstream & ofs);
+            virtual void codeFile(std::ifstream && ifs, std::ofstream && ofs);
 
             std::any encodeView(void);
             template<typename T> void writeToBuffer(T code);
@@ -30,7 +32,10 @@ namespace lzss
             SlidingWindow           m_sliWin;
             std::vector<uint8_t>    m_encBuf;
             std::uint8_t            m_nBits;
-    };
+        };
+    }
+
+    typedef encoder::Encoder    Encoder;
 }
 
 #endif

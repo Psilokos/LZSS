@@ -43,9 +43,8 @@ namespace lzss
     void
     Codec::codeFile(void)
     {
-        FileQueue::value_type files(std::move(m_fileQ.front().first),
-                                    std::move(m_fileQ.front().second));
+        FileQueue::value_type files(std::move(m_fileQ.front()));
         m_fileQ.pop();
-        this->codeFilePriv(files.first, files.second);
+        this->codeFile(std::move(files.first), std::move(files.second));
     }
 }
